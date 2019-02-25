@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS exam (
+    exam_no     INTEGER PRIMARY KEY AUTOINCREMENT,
+    exam_name   TEXT
+);
+
+CREATE TABLE IF NOT EXISTS employee (
+    emp_no      INTEGER PRIMARY KEY AUTOINCREMENT,
+    emp_name    TEXT
+);
