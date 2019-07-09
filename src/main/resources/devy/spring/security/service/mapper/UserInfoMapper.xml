@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="devy.spring.security.service.mapper.UserInfoMapper">
+    <select id="getUser" resultType="devy.spring.security.service.domain.UserInfo">
+        select * from user_info
+        where
+            user_id = #{userId}
+        ;
+    </select>
+
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="userNo" parameterType="devy.spring.security.service.domain.UserInfo">
+        insert into user_info (
+            user_id, user_name, password
+        ) values (
+            #{userId}, #{userName}, #{password}
+        );
+    </insert>
+</mapper>
