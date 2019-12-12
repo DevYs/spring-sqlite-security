@@ -4,6 +4,7 @@ HELP.md
 !gradle/wrapper/gradle-wrapper.jar
 .DS_Store
 sqlite.db
+/src/main/resources/application.properties
 
 ### STS ###
 .apt_generated
