@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Service;
 
 import java.util.logging.Logger;
@@ -19,16 +19,17 @@ public class UserInfoService implements UserDetailsService {
 	@Autowired
 	private UserInfoMapper userInfoMapper;
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
 	@Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-		return userInfoMapper.getUser(userId).user(UserInfo.ROLE_USER);
+		UserInfo user = userInfoMapper.getUser(userId);
+
+		if(user == null) { return null;	}
+
+		return user.user(UserInfo.ROLE_USER);
 	}
 
 	public UserInfo addUser(UserInfo userInfo) {
-		String password = passwordEncoder.encode(userInfo.getPassword());
+		String password = PasswordEncoderFactories.createDelegatingPasswordEncoder().encode(userInfo.getPassword());
 		userInfo.setPassword(password);
 		int result = userInfoMapper.addUser(userInfo);
 		logger.info(userInfo.toString());

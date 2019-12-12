@@ -9,6 +9,17 @@ group = 'devy.spring.security'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+/** Javadoc 설정 */
+javadoc {
+	source 'src.main.java'
+	options.memberLevel = JavadocMemberLevel.PRIVATE
+	options.encoding = 'UTF-8'
+	options.addStringOption("locale","ko_KR");
+	options.addStringOption("encoding","UTF-8");
+	options.addStringOption("charset","UTF-8");
+	options.addStringOption("docencoding","UTF-8")
+}
+
 repositories {
 	mavenCentral()
 }
@@ -27,4 +38,19 @@ dependencies {
 	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+}
+
+/** 실행, 빌드 설정 분리 */
+ext.profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
+sourceSets {
+	main {
+		resources {
+			srcDirs "src/main/resources", "src/main/resources-${profile}/"
+		}
+	}
+}
+
+build {
+	System.out.println("build for [${profile}] application.properties");
+	version = "0.0.1-${profile}-SNAPSHOT"
 }
