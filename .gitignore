@@ -5,6 +5,7 @@ HELP.md
 .DS_Store
 sqlite.db
 /src/main/resources/application.properties
+*.p12
 
 ### STS ###
 .apt_generated
