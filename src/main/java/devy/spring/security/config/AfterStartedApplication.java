@@ -29,7 +29,7 @@ public class AfterStartedApplication {
      */
     @EventListener(ApplicationReadyEvent.class)
     public void applicationReady() {
-        logger.info("after started application");
+        logger.info("Started application !!");
 
         String firstId = "first";
         UserDetails first = userInfoService.loadUserByUsername(firstId);
