@@ -1,0 +1,2 @@
+sed $'s/\r$//' ./gradlew > ./gradlew_mac &&
+chmod +x ./gradlew_mac

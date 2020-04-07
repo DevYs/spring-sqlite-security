@@ -6,6 +6,7 @@ HELP.md
 sqlite.db
 /src/main/resources/application.properties
 *.p12
+gradlew_mac
 
 ### STS ###
 .apt_generated
